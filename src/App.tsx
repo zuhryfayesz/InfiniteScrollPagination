@@ -4,12 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import InfiniteScrollGrid from './components/InfiniteScrollGrid'
 
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <InfiniteScrollGrid/>
+      <InfiniteScrollGrid/>
     </>
   )
 }
