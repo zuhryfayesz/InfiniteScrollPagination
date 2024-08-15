@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { DataGridPro } from "@mui/x-data-grid-pro";
 import axios from "axios";
+import LinearProgress from "@mui/material/LinearProgress";
+import { Box } from "@mui/material";
 
 interface PostData {
   id: number;
@@ -12,7 +14,7 @@ interface PostData {
 const InfiniteScrollGrid = () => {
   const [post, setPost] = useState<PostData[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getPosts = async () => {
     await axios
@@ -52,15 +54,18 @@ const InfiniteScrollGrid = () => {
 
   return (
     <>
+      {loading && (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress />
+        </Box>
+      )}
       <DataGridPro
         style={{ height: "600px" }}
         onRowsScrollEnd={onScrollEnd}
         getRowId={(row) => row.id}
         rows={rows}
         columns={columns}
-        
       />
-      {loading && <div>Loading ...</div>}
     </>
   );
 };
